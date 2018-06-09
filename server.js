@@ -7,6 +7,8 @@ MomentHandler.registerHelpers(Handlebars);
 Handlebars.registerHelper('date', require('helper-date'));
 // HandlebarsIntl.registerWith(handlebars);
 // const env = require('dotenv').load();
+require('dotenv').config();
+
 var moment = require('moment');
 
 // authentication packages
