@@ -59,9 +59,58 @@ require("./controller/events-api-routes.js")(app);
 require("./controller/groups-api-routes.js")(app);
 require("./controller/people-api-routes.js")(app);
 
-db.sequelize.sync({ force: false }).then(function() {
-    // console.log("goodbye")
-    app.listen(PORT, function() {
-        console.log("listening on PORT" + PORT);
-    })
+db.sequelize.sync({ force: false }).then(function () {
+  db.People.find({ where: { userName: 'test' } }).then(function (user) {
+    if (!user) {
+      db.People.create(
+        {
+          firstName: 'Test',
+          lastName: 'User',
+          userName: 'test',
+          password: 'test',
+          email: 'test@admin.com',
+          phoneNumber: '5555555555',
+        },
+        {
+          include: [{
+            model: db.Group,
+            through: { attributes: [] },
+          }],
+        },
+      );
+    }
+  }).catch(function(err) {
+    console.log(err);
+  });
+  db.Group.find({ where: { name: 'test group' } }).then(function (group) {
+    if (!group) {
+      db.Group.create(
+        {
+          name: 'test group',
+          peopleIds: ['1'],
+        },
+      );
+    }
+  });
+  db.Events.find({ where: { name: 'Test Event' } }).then(function (event) {
+    if (!event) {
+      db.Events.create(
+        {
+          name: 'Test Event',
+          organizer: '1',
+          location_address: '1234 Test Lane',
+          city: 'Springfield',
+          state: 'New Mexico',
+          date: '2018-06-09 00:00:00',
+          time: '20:00:00',
+          description: 'A picnic at a local park',
+          GroupId: 1,
+        },
+      );
+    }
+  });
+  // console.log("goodbye")
+  app.listen(PORT, function () {
+    console.log("listening on PORT" + PORT);
+  });
 });
