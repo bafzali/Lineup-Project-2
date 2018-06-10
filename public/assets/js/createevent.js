@@ -1,43 +1,31 @@
 $(function () {
-  var groupSelect = $("#group");
-  var nameInput = $("#validationCustom02");
-  var organizerInput = "1";
-  var location_addressInput = $("#validationCustom03");
-  var cityInput = $("#validationCustom05");
-  var stateInput = $("#validationCustom04");
-  var dateInput = $("#date-input");
-  var timeInput = $("#time-input");
-  var descriptionInput = $("#exampleFormControlTextarea1");
-  var createeventForm = $("#createevent")
+  const groupSelect = $('#group');
+  const nameInput = $('#validationCustom02');
+  const organizerInput = '1';
+  const location_addressInput = $('#validationCustom03');
+  const cityInput = $('#validationCustom05');
+  const stateInput = $('#validationCustom04');
+  const dateInput = $('#date-input');
+  const timeInput = $('#time-input');
+  const descriptionInput = $('#exampleFormControlTextarea1');
+  const createeventForm = $('#createevent');
 
-  $("#createevent").on("submit", handleFormSubmit);
+  $('#createevent').on('submit', handleFormSubmit);
 
-  var url = window.location.search;
-  var peopleId;
-  var groupId;
-  var updating = false;
-
-  //   if (url.indexOf("?event_id=") !== -1) {
-  //     eventId = url.split("=")[1];
-  //     getEventData(eventId, "event");
-  //   }
-
-  //   else if (url.indexOf("?group_id=") !== -1) {
-  //     groupId = url.split("=")[1];
-  //   }
+  // let url = window.location.search;
+  // let peopleId;
+  let groupId;
+  let updating = false;
 
   getGroups();
 
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    // $("#submit-event").on("click", function(event){
-    //     event.preventDefault();
-
     if (!groupSelect.val()) {
       return;
     }
-    var newEvent = {
+    const newEvent = {
       name: nameInput.val().trim(),
       organizer: organizerInput,
       location_address: location_addressInput.val().trim(),
@@ -46,10 +34,8 @@ $(function () {
       date: dateInput.val().trim(),
       time: timeInput.val().trim(),
       description: descriptionInput.val().trim(),
-      GroupId: groupSelect.val()
+      GroupId: groupSelect.val(),
     };
-
-    console.log(newEvent);
 
     if (updating) {
       newEvent.id = eventId;
@@ -60,41 +46,31 @@ $(function () {
     }
 
     function submitEvent(event) {
-      $.ajax("/api/events", {
-        type: "POST",
+      $.ajax('/api/events', {
+        type: 'POST',
         data: newEvent
       }).then(function () {
-        console.log("Created New Event");
-        window.location.href = "/";
+        // console.log('Created New Event');
+        window.location.href = '/';
       });
     }
   }
-  // function submitEvent(event) {
-
-  //     $.post("/api/events", event, function() {
-
-  //         window.location.href = "/createEvent"
-
-
-  //     });
-  // }
-
 
   function getEventData(id, name) {
-    var queryURL;
+    let queryURL;
     switch (name) {
-      case "event":
-        queryURL = "/api/events" + id;
+      case 'event':
+        queryURL = '/api/events' + id;
         break;
-      case "group":
-        queryURL = "/api/groups/" + id;
+      case 'group':
+        queryURL = '/api/groups/' + id;
         break;
       default:
         return;
     }
     $.get(queryURL, function (data) {
       if (data) {
-        console.log(data.peopleId || data.id);
+        // console.log(data.peopleId || data.id);
         nameInput.val(data.name);
         groupId = data.groupId || data.id;
 
@@ -103,60 +79,39 @@ $(function () {
     });
   }
 
-  //these three functions create option elements in select group dropdown
+  // these three functions create option elements in select group dropdown
   function getGroups() {
-    $.get("/api/groups", renderGroupList);
+    $.get('/api/groups', renderGroupList);
   }
 
   function renderGroupList(data) {
+    let rowsToAdd = [];
     if (!data.length) {
-      window.location.href = "/createGroup"
+      window.location.href = '/createGroup';
     }
-    var rowsToAdd = [];
-    for (var i = 0; i < data.length; i++) {
-      rowsToAdd.push(createGroupRow(data[i]))
+    for (let i = 0; i < data.length; i++) {
+      rowsToAdd.push(createGroupRow(data[i]));
     }
     groupSelect.empty();
-    console.log(rowsToAdd);
-    console.log(groupSelect);
     groupSelect.append(rowsToAdd);
-    groupSelect.val(groupId)
+    groupSelect.val(groupId);
   }
 
   function createGroupRow(group) {
-    var listOption = $("<option>");
-    listOption.attr("value", group.id);
+    const listOption = $('<option>');
+    listOption.attr('value', group.id);
     listOption.text(group.name);
-    return listOption
+    return listOption;
   }
 
-
-  // console.log(newEvent);
   function updateEvent(event) {
     $.ajax({
-      method: "PUT",
-      url: "/api/events",
-      data: event
+      method: 'PUT',
+      url: '/api/events',
+      data: event,
     })
       .then(function () {
-        window.location.href = "/";
-      })
-
-    // $.ajax("/api/events", {
-    //     type: "POST",
-    //     data: newEvent
-    // }).then(function () {
-    //     console.log("Created New Event");
-    //     window.location.href = "/";
-    // });
+        window.location.href = '/';
+      });
   }
-})
-
-  // $.ajax("/api/events", {
-  //     type: "POST",
-  //     data: newEvent
-  // }).then(function () {
-  //     console.log("Created New Event");
-  //     window.location.href = "/";
-  // });
-// })
+});

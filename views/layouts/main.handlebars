@@ -12,6 +12,16 @@
   <link rel="stylesheet" href="/assets/style/style.css">
   
   <title>Line Up</title>
+
+</head>
+<body>
+  {{#if login}}
+    {{>loggedIn}}
+  {{/if}}
+  {{#unless login}}
+    {{>loggedOut}}
+  {{/unless}}
+  {{{body}}}
   <!-- Latest compiled and minified JS -->
   <script src="https://code.jquery.com/jquery.js"></script>
 
@@ -21,13 +31,8 @@
   <script src="../assets/js/signup.js"></script>
   <script src="../assets/js/creategroup.js"></script>
   <script src="../assets/js/createevent.js"></script>
-  <script src="handlebars/dist/handlebars.min.js"></script>
-<script src="handlebars-intl/dist/handlebars-intl.min.js"></script>
-
-</head>
-
-<body>
-  {{{body}}}
+  {{!-- <script src="handlebars/dist/handlebars.min.js"></script>
+  <script src="handlebars-intl/dist/handlebars-intl.min.js"></script> --}}
 </body>
 
 </html>

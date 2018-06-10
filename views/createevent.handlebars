@@ -1,12 +1,9 @@
-
-
-<header>
+{{!-- <header>
   <div class="container">
     <div class="navbar centered">
       <a class="navbar-brand" href="#">
-                <div id="spacer"></div>
-
-        {{!-- <img src="assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families."> --}}
+        <div id="spacer"></div>
+        <img src="assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families.">
       </a>
       <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-right">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,8 +12,6 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-            {{!-- <a class="nav-item nav-link" href="/myEvents">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="#">Create Event</a>
             <a class="nav-item nav-link" href="/creategroup">Create Group</a>
             <a class="nav-item nav-link" href="/login">Log In</a>
@@ -26,104 +21,95 @@
       </nav>
     </div>
   </div>
-</header>
+</header> --}}
 <main>
-<div class ="container">
-  <h1>Group Events</h1>
-  <form id="createevent">
-					<div class="form-group">
-							<label for="category">Select Group:</label>
-							<select class="custom-select" id="group">
-  						</select>
-						</div>
-    {{!-- <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle dropdown-group mb-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Select a Group
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#"></a>
-  </div>
-</div> --}}
-<div class="row">
+  <div class ="container">
+    <h1>Group Events</h1>
+    <form id="createevent">
+      <div class="form-group">
+        <label for="category">Select Group:</label>
+        <select class="custom-select" id="group">
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="exampleInputFile">Upload Image</label>
+          <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+          <small id="fileHelp" class="form-text text-muted">Upload an image of your event!</small>
+        </div>
+      </div>  
       <div class="col-md-4 mb-3">
-      <label for="exampleInputFile">Upload Image</label>
-      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-      <small id="fileHelp" class="form-text text-muted">Upload an image of your event!</small>
-    </div>
-  </div>  
-          <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Event Name</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Event name" value="" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
+        <label for="validationCustom02">Event Name</label>
+        <input type="text" class="form-control" id="validationCustom02" placeholder="Event name" value="" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustomUsername">Date</label>
+        <div class="input-group date">
+          <div class="input-group-prepend">
+            <label for="example-datetime-local-input"></label>
+              <input class="form-control" type="date" id="date-input">
           </div>
-          <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Date</label>
-            <div class="input-group date">
-              <div class="input-group-prepend">
-                <label for="example-datetime-local-input"></label>
-                  <input class="form-control" type="date" id="date-input">
-              </div>
-              <div class="invalid-feedback">
-                Please choose a date.
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Time</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <label for="example-datetime-local-input"></label>
-                  <input class="form-control" type="time" id="time-input">
-              </div>
-              <div class="invalid-feedback">
-                Please choose a time.
-              </div>
-            </div>
-          </div>
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <label for="validationCustom03">Address</label>
-            <input type="text" class="form-control" id="validationCustom03" placeholder="Address" required>
-            <div class="invalid-feedback">
-              Please provide an address.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom04">State</label>
-            <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-            <div class="invalid-feedback">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom05">City</label>
-            <input type="text" class="form-control" id="validationCustom05" placeholder="City" required>
-            <div class="invalid-feedback">
-              Please provide a city.
-            </div>
+          <div class="invalid-feedback">
+            Please choose a date.
           </div>
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
+      </div>
 
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-            <label class="form-check-label" for="invalidCheck">
-              Agree to terms and conditions
-            </label>
-            <div class="invalid-feedback">
-              You must agree before submitting.
-            </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustomUsername">Time</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label for="example-datetime-local-input"></label>
+              <input class="form-control" type="time" id="time-input">
+          </div>
+          <div class="invalid-feedback">
+            Please choose a time.
           </div>
         </div>
-        <button class="btn btn-primary" id="submit-event" type="submit">Submit Event</button>
-      </form>
-    </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom03">Address</label>
+          <input type="text" class="form-control" id="validationCustom03" placeholder="Address" required>
+          <div class="invalid-feedback">
+            Please provide an address.
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom04">State</label>
+          <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom05">City</label>
+          <input type="text" class="form-control" id="validationCustom05" placeholder="City" required>
+          <div class="invalid-feedback">
+            Please provide a city.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+          <label class="form-check-label" for="invalidCheck">
+            Agree to terms and conditions
+          </label>
+          <div class="invalid-feedback">
+            You must agree before submitting.
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="submit-event" type="submit">Submit Event</button>
+    </form>
   </div>
 </main>

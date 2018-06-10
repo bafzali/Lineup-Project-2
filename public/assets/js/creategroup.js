@@ -4,35 +4,29 @@ $(function () {
 
     let newGroup = {
       name: $("#new-group-name").val().trim(),
-      admin: "1"
+      admin: "1",
 
     };
 
-    // console.log($($("input:checked")[0]).attr("id"));
     let checked = $("input:checked")
     let peopleIds = [];
     for (let i = 0; i < checked.length; i++) {
-      peopleIds.push($(checked[i]).attr("id"))
+      peopleIds.push($(checked[i]).attr("id"));
     }
 
-    // console.log(peopleIds)
-
-    let body = { newGroup: newGroup, peopleIds: peopleIds }
+    let body = { newGroup: newGroup, peopleIds: peopleIds };
 
     $.ajax("/api/groups", {
       type: "POST",
-      data: body
+      data: body,
     }).then(function (data) {
       console.log("Created New Group");
-      $("body").text(data)
-      // location.reload(); 
+      $("body").text(data);
     });
-  })
+  });
 
   $("#delete-member").on("click", function (event) {
     event.preventDefault();
-    // console.log("HI");
-
 
     var id = $(this).data("id")
 
@@ -42,26 +36,26 @@ $(function () {
     }).then(function () {
       console.log("Deleted Member");
       location.reload();
-    })
+    });
   });
+});
 
-  // $("#add-new-member").on("click", function(event){
-  //     event.preventDefault();
-  //     // console.log("Click");
+// $("#add-new-member").on("click", function(event){
+//     event.preventDefault();
+//     // console.log("Click");
 
-  //     var newMember = {
-  //         name: $("#add-username").val().trim(),
-  //         admin: "1"
-  //     }
+//     var newMember = {
+//         name: $("#add-username").val().trim(),
+//         admin: "1"
+//     }
 
-  //     console.log(newMember);
+//     console.log(newMember);
 
-  //     $.ajax("/api/groups", {
-  //         type: "POST",
-  //         data: newMember
-  //     }).then(function(){
-  //         console.log("created new member");
-  //         // location.reload();
-  //     })
-  // })
-}); 
+//     $.ajax("/api/groups", {
+//         type: "POST",
+//         data: newMember
+//     }).then(function(){
+//         console.log("created new member");
+//         // location.reload();
+//     })
+// })

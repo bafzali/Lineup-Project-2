@@ -37,35 +37,6 @@ passport.use('local-signin', new Strategy(
   },
 ));
 
-// // User signup
-// passport.use('local-signup', new Strategy(
-//   {
-//     usernameField: 'userName',
-//     passwordField: 'password',
-//     passReqToCallback: true, // allows us to pass back the entire request to the callback
-//   },
-//   function(req, userName, password, cb) {
-//     console.log(userName + ' ' + password);
-//     db.People.findOne({ where: { userName: userName } }).then(function(user) {
-//       if (user) {
-//         console.log('That username is taken.');
-//         return cb(null, false);
-    
-//         db.People.create(
-//           req.body,
-//           {
-//             include: [{
-//               model: db.Group,
-//               through: { attributes: [] },
-//             }],
-//           },
-//         ).then(function (dbPeople) {
-//           res.json(dbPeople);
-//         });
-//     });
-//   },
-// ));
-
 // Configure the local strategy for use by Passport.
 passport.serializeUser(function(user, cb) {
   console.log(`user id: ${user.id}`);

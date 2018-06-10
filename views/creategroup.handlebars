@@ -1,10 +1,9 @@
-
-<header>
+{{!-- <header>
   <div class="container">
     <div class="navbar centered">
       <a class="navbar-brand" href="#">
         <div id="spacer"></div>
-        {{!-- <img src="assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families."> --}}
+        <img src="assets/images/line_up3.png" width="280" height="210" alt="Line Up, A social calendar for busy families.">
       </a>
       <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-right">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,8 +12,6 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/index">Home <span class="sr-only">(current)</span></a>
-            {{!-- <a class="nav-item nav-link" href="#">My Events</a>
-            <a class="nav-item nav-link" href="/allEvents">All Events</a> --}}
             <a class="nav-item nav-link" href="/createevent">Create Event</a>
             <a class="nav-item nav-link" href="#">Create Group</a>
             <a class="nav-item nav-link" href="/login">Log In</a>
@@ -24,8 +21,7 @@
       </nav>
     </div>
   </div>
-</header>
-
+</header> --}}
 <main>
 <div class ="container">
   <h1>Create a New Group</h1>
@@ -70,28 +66,13 @@
 
 
     <br>
-    {{!-- Take user to manage group page--}}
     <div class="row">
       <div class="col-md-4 mb-3 ml-4">
         <form>
-          {{!-- Version 1 (without id's--}}
-          {{!-- <input id="add-new-group" class="btn btn-dark" type="button" value="Submit" onclick="window.setTimeout(window.location.href='/', 3000)"/> --}}
-          {{!-- Version 2 (with Id's) --}}
           <input id="add-new-group" class="btn btn-dark" type="button" value="Submit" onclick="window.setTimeout(window.location.href='/{{peopleId}}', 3000)"/>
         </form>
       </div>
     </div>
-    
-  {{!-- close form group div --}}
   </form>  
-
-{{!-- close main body container --}}
-</div> 
-
-
-<script>
-
-
-</script>
-
+</div>
 </main>

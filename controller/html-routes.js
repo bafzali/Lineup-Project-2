@@ -1,8 +1,7 @@
-var db = require("../models")
+const db = require('../models');
 const passport = require('passport');
 
 module.exports = function (app) {
-
   function authenticationMiddleware(req, res, next) {
     // console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
     if (req.isAuthenticated()) {
