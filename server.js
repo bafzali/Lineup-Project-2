@@ -60,13 +60,13 @@ require("./controller/groups-api-routes.js")(app);
 require("./controller/people-api-routes.js")(app);
 
 db.sequelize.sync({ force: false }).then(function () {
-  db.People.find({ where: { userName: 'test' } }).then(function (user) {
+  db.People.find({ where: { userName: 'sampleUser' } }).then(function (user) {
     if (!user) {
       db.People.create(
         {
           firstName: 'Test',
           lastName: 'User',
-          userName: 'test',
+          userName: 'sampleUser',
           password: 'test',
           email: 'test@admin.com',
           phoneNumber: '5555555555',
@@ -79,24 +79,51 @@ db.sequelize.sync({ force: false }).then(function () {
         },
       );
     }
-  }).catch(function(err) {
+  }).catch(function (err) {
     console.log(err);
   });
-  db.Group.find({ where: { name: 'test group' } }).then(function (group) {
+  db.Group.find({ where: { name: 'sample group' } }).then(function (group) {
     if (!group) {
-      db.Group.create(
-        {
-          name: 'test group',
-          peopleIds: ['1'],
-        },
-      );
+      // db.Group.create(
+      //   {
+      //     name: 'test group',
+      //     peopleIds: ['1'],
+      //   },
+      // );
+      app.post("/api/groups", function (req, res) {
+        db.Group.create(
+          {
+            name: 'sample group',
+            admin: '1',
+            peopleIds: ['1'],
+          },
+        ).then(function (group) {
+
+          let people = req.body.peopleIds.map((id) => {
+            // let people = [1,6].map((id) => {
+            return db.People.findById(parseInt(id))
+          });
+          return { group: group, people: Promise.all(people) }
+        })
+          .then((fulfilledPromise) => {
+            let group = fulfilledPromise.group
+            fulfilledPromise.people.then(people => {
+              return group.setPeople(people)
+            })
+              .then((groupPeopleData) => {
+                // console.log(groupPeopleData)
+                res.json(groupPeopleData)
+              });
+          });
+      });
     }
   });
-  db.Events.find({ where: { name: 'Test Event' } }).then(function (event) {
+
+  db.Events.find({ where: { name: 'Sample Event' } }).then(function (event) {
     if (!event) {
       db.Events.create(
         {
-          name: 'Test Event',
+          name: 'Sample Event',
           organizer: '1',
           location_address: '1234 Test Lane',
           city: 'Springfield',
@@ -104,7 +131,7 @@ db.sequelize.sync({ force: false }).then(function () {
           date: '2018-06-09 00:00:00',
           time: '20:00:00',
           description: 'A picnic at a local park',
-          GroupId: 1,
+          GroupId: '1',
         },
       );
     }

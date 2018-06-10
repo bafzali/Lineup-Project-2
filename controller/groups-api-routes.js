@@ -47,8 +47,7 @@ module.exports = function (app) {
       let people = req.body.peopleIds.map((id) => {
         // let people = [1,6].map((id) => {
         return db.People.findById(parseInt(id))
-
-      })
+      });
       return { group: group, people: Promise.all(people) }
     })
       .then((fulfilledPromise) => {
@@ -59,10 +58,8 @@ module.exports = function (app) {
           .then((groupPeopleData) => {
             console.log(groupPeopleData)
             res.json(groupPeopleData)
-          })
-
-      })
-
+          });
+      });
   });
 
   app.put("/api/groups", function (req, res) {
