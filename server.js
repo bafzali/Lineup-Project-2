@@ -26,7 +26,6 @@ app.use(require('cookie-parser')());
 
 app.use(express.static('public'));
 
-
 // For Passport and Passport sessions
 app.use(session({
   secret: 'fsd889sdneroij$#^r9j2#iop9e',
@@ -53,8 +52,6 @@ app.use(function (req, res, next) {
 
 // Flash
 const flash = require('connect-flash');
-
-app.use(flash());
 
 app.use(flash());
 
